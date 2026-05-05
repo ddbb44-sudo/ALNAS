@@ -113,20 +113,6 @@
             background: rgba(17, 24, 39, 0.6);
         }
 
-        /* Apple Motion Design: Scroll Reveal */
-        .reveal-element {
-            opacity: 0;
-            transform: translateY(30px) scale(0.98);
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease-out;
-            filter: blur(4px);
-            will-change: opacity, transform, filter;
-        }
-        .reveal-element.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            filter: blur(0);
-        }
-
         /* Background ambient blur layer */
         .ambient-bg {
             position: fixed;
@@ -173,7 +159,7 @@
     <main class="max-w-4xl mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-24 md:space-y-32">
 
         <!-- 1. The Surah (Quranic Theme) -->
-        <section class="reveal-element">
+        <section>
             <div class="apple-card bg-quran-bg dark:bg-[#1a231f] rounded-[32px] p-10 md:p-16 shadow-apple hover:shadow-apple-hover dark:shadow-apple-dark dark:hover:shadow-apple-dark-hover border border-quran-border/30 dark:border-white/5 relative overflow-hidden flex flex-col items-center text-center">
                 <span class="text-sm font-semibold tracking-widest text-quran-text/60 dark:text-emerald-400/60 uppercase mb-8">سورة الناس</span>
                 <div class="font-quran quran-text text-3xl md:text-5xl lg:text-6xl text-quran-text dark:text-emerald-50 w-full max-w-3xl leading-relaxed">
@@ -183,7 +169,7 @@
         </section>
 
         <!-- 2. Language Alerts (Language Theme: Old Paper/Parchment feel) -->
-        <section class="reveal-element">
+        <section>
             <div class="apple-card bg-white/60 dark:bg-[#1f2937]/40 backdrop-blur-md rounded-[32px] p-10 md:p-14 shadow-apple hover:shadow-apple-hover dark:shadow-apple-dark dark:hover:shadow-apple-dark-hover border border-black/5 dark:border-white/5">
                 <header class="mb-12">
                     <h2 class="text-2xl md:text-3xl font-semibold text-slate-800 dark:text-slate-100 flex items-center gap-4">
@@ -223,7 +209,7 @@
         </section>
 
         <!-- 3. First Ayah (Tafsir & Language Blend) -->
-        <section class="reveal-element space-y-8">
+        <section class="space-y-8">
             <div class="text-center mb-16">
                 <span class="font-quran text-4xl md:text-5xl text-quran-text dark:text-emerald-100">﴿ قُلْ أَعُوذُ بِرَبِّ النَّاسِ ﴾</span>
             </div>
@@ -295,7 +281,7 @@
         </section>
 
         <!-- 4. Deep Reflections (Premium Dark Theme for Balagha) -->
-        <section class="reveal-element">
+        <section>
             <div class="apple-card bg-reflect-bg text-reflect-text rounded-[32px] p-10 md:p-16 shadow-apple dark:shadow-apple-dark relative overflow-hidden">
                 <!-- Abstract subtle light in the dark card -->
                 <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-reflect-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
@@ -343,7 +329,7 @@
         </section>
 
         <!-- 5. Ayah 4 & Hadith (Hadith Theme: Serene Green/Grey) -->
-        <section class="reveal-element space-y-12">
+        <section class="space-y-12">
             <div class="text-center mb-12">
                 <span class="font-quran text-3xl md:text-5xl text-quran-text dark:text-emerald-100">﴿ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴾</span>
             </div>
@@ -376,7 +362,7 @@
         </section>
 
         <!-- 6. The Heart & Ayah 5 -->
-        <section class="reveal-element space-y-12">
+        <section class="space-y-12">
             <div class="text-center mb-12">
                 <span class="font-quran text-3xl md:text-5xl text-quran-text dark:text-emerald-100">﴿ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴾</span>
             </div>
@@ -418,7 +404,7 @@
         </section>
 
         <!-- 7. Ayah 6 & Conclusion Summary -->
-        <section class="reveal-element space-y-12">
+        <section class="space-y-12">
             <div class="text-center mb-12">
                 <span class="font-quran text-3xl md:text-5xl text-quran-text dark:text-emerald-100">﴿ مِنَ الْجِنَّةِ وَالنَّاسِ ﴾</span>
             </div>
@@ -452,7 +438,7 @@
         </section>
 
         <!-- Final Spiritual Note -->
-        <section class="reveal-element pt-12 pb-24 text-center max-w-2xl mx-auto">
+        <section class="pt-12 pb-24 text-center max-w-2xl mx-auto">
             <div class="w-12 h-px bg-slate-300 dark:bg-slate-700 mx-auto mb-12"></div>
             <p class="text-slate-500 dark:text-slate-400 text-xl leading-relaxed font-light">
                 نسأل الله عز وجل أن يقينا وإياكم شر وساوس الشياطين، وأن يرزقنا سلامة القلوب، والثبات على الحق، وحسن الالتجاء إليه سبحانه.
@@ -461,7 +447,7 @@
 
     </main>
 
-    <!-- Interactive Scripts (Theme & Scroll Animation) -->
+    <!-- Interactive Scripts (Theme Only) -->
     <script>
         // Dark Mode Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -496,26 +482,6 @@
                 localStorage.theme = 'dark';
             }
             updateThemeIcon();
-        });
-
-        // Apple-style Scroll Reveal Animation
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Animate only once
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal-element').forEach(el => {
-            observer.observe(el);
         });
     </script>
 </body>
