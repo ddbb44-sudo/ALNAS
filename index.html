@@ -1,184 +1,522 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تأملات لغوية وتفسيرية في سورة الناس</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['IBM Plex Sans Arabic', 'sans-serif'],
-            quran: ['Amiri', 'serif'],
-          },
-          colors: {
-            alert: '#ef4444',
-            tafsir: '#3b82f6',
-            language: '#10b981',
-            rhetoric: '#d946ef',
-            reflection: '#f59e0b',
-            quote: '#64748b'
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأملات لغوية وتفسيرية في سورة الناس</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"IBM Plex Sans Arabic"', 'sans-serif'],
+                        quran: ['"Amiri"', 'serif'],
+                    },
+                    colors: {
+                        apple: {
+                            light: '#F5F3EF',
+                            dark: '#111827'
+                        },
+                        quran: {
+                            bg: '#F8F6F1',
+                            text: '#31473A',
+                            border: '#D6CFC2'
+                        },
+                        lang: {
+                            bg: '#F4EFE7',
+                            accent: '#8B6F47'
+                        },
+                        tafsir: {
+                            bg: '#F3F4F6',
+                            accent: '#6B7280'
+                        },
+                        reflect: {
+                            bg: '#1F2937',
+                            text: '#F9FAFB',
+                            gold: '#C6A96B'
+                        },
+                        hadith: {
+                            bg: '#F5F7F4',
+                            accent: '#4B6B4E'
+                        }
+                    },
+                    boxShadow: {
+                        'apple': '0 8px 32px -8px rgba(0, 0, 0, 0.04), 0 4px 16px -4px rgba(0, 0, 0, 0.02)',
+                        'apple-hover': '0 20px 48px -12px rgba(0, 0, 0, 0.08), 0 12px 24px -8px rgba(0, 0, 0, 0.04)',
+                        'apple-dark': '0 8px 32px -8px rgba(0, 0, 0, 0.3)',
+                        'apple-dark-hover': '0 20px 48px -12px rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
+    </script>
 
-  <style>
-    body {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+    <style>
+        /* Base typography & smoothing */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
 
-    .quran-text {
-      line-height: 2.2;
-      word-spacing: 2px;
-    }
+        /* Apple-like soft scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.3);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.5);
+        }
 
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
+        /* Typography spacing */
+        .quran-text {
+            line-height: 2.6;
+            word-spacing: 4px;
+        }
+        
+        p {
+            line-height: 1.8;
+            letter-spacing: -0.01em;
+        }
 
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
+        /* Apple Motion Design: Cards */
+        .apple-card {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, box-shadow;
+        }
+        .apple-card:hover {
+            transform: translateY(-3px) scale(1.002);
+        }
 
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
+        /* Glassmorphism subtle effect */
+        .glass-nav {
+            background: rgba(245, 243, 239, 0.6);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .dark .glass-nav {
+            background: rgba(17, 24, 39, 0.6);
+        }
 
-    .dark ::-webkit-scrollbar-thumb {
-      background: #475569;
-    }
+        /* Apple Motion Design: Scroll Reveal */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease-out;
+            filter: blur(4px);
+            will-change: opacity, transform, filter;
+        }
+        .reveal-element.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
 
-    .card-hover {
-      transition: all 0.3s ease;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-    }
-
-    .dark .card-hover:hover {
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-    }
-  </style>
+        /* Background ambient blur layer */
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .ambient-blob {
+            position: absolute;
+            filter: blur(120px);
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
+<body class="bg-apple-light dark:bg-apple-dark text-slate-800 dark:text-slate-200 transition-colors duration-700 font-sans selection:bg-quran-text selection:text-white dark:selection:bg-reflect-gold dark:selection:text-apple-dark">
 
-  <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-300">
-    <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-l from-indigo-600 to-emerald-600 dark:from-indigo-400 dark:to-emerald-400">
-        تأملات في سورة الناس
-      </h1>
-
-      <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors focus:outline-none" aria-label="تبديل الوضع الليلي">
-        <svg id="theme-toggle-dark-icon" class="hidden w-6 h-6 text-slate-700 dark:text-slate-300" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-        </svg>
-        <svg id="theme-toggle-light-icon" class="hidden w-6 h-6 text-slate-700 dark:text-slate-300" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.32a1 1 0 011.415 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-2.32 4.22a1 1 0 010 1.415l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.415 0zM10 18a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1 1zm-4.22-2.32a1 1 0 01-1.415 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.415zM2 10a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zm2.32-4.22a1 1 0 010-1.415l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.415 0z" clip-rule="evenodd"></path>
-        </svg>
-      </button>
+    <!-- Ambient Background blobs for depth -->
+    <div class="ambient-bg dark:opacity-30">
+        <div class="ambient-blob w-[600px] h-[600px] bg-[#e5e1d8] dark:bg-slate-800 -top-[200px] -right-[200px]"></div>
+        <div class="ambient-blob w-[500px] h-[500px] bg-[#f0ebd8] dark:bg-slate-900 top-[40%] -left-[200px]"></div>
     </div>
-  </nav>
 
-  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-8 md:space-y-12">
-    <section class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 dark:border-slate-700 text-center relative overflow-hidden card-hover">
-      <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-100 dark:bg-emerald-900/30 rounded-bl-full -mr-16 -mt-16 z-0"></div>
-      <div class="absolute bottom-0 left-0 w-32 h-32 bg-indigo-100 dark:bg-indigo-900/30 rounded-tr-full -ml-16 -mb-16 z-0"></div>
-
-      <div class="relative z-10 space-y-6">
-        <h2 class="text-emerald-600 dark:text-emerald-400 font-semibold text-lg md:text-xl mb-4">سورة الناس</h2>
-        <div class="font-quran quran-text text-3xl md:text-4xl lg:text-5xl text-slate-900 dark:text-slate-100">
-          ﴿ قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ ﴾
+    <!-- Minimalist Premium Navbar -->
+    <nav class="sticky top-0 z-50 glass-nav border-b border-black/5 dark:border-white/5 transition-colors duration-700">
+        <div class="max-w-4xl mx-auto px-6 py-5 flex justify-between items-center">
+            <h1 class="text-lg md:text-xl font-semibold tracking-tight text-slate-800 dark:text-slate-200">
+                تأملات في سورة الناس
+            </h1>
+            
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors duration-300 focus:outline-none" aria-label="Toggle Dark Mode">
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-600 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-slate-600 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.32a1 1 0 011.415 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-2.32 4.22a1 1 0 010 1.415l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.415 0zM10 18a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1 1zm-4.22-2.32a1 1 0 01-1.415 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.415zM2 10a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zm2.32-4.22a1 1 0 010-1.415l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.415 0z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
         </div>
-      </div>
-    </section>
+    </nav>
 
-    <section class="bg-white dark:bg-slate-800 rounded-2xl p-6 md:p-8 shadow-sm border border-slate-100 dark:border-slate-700 border-r-4 border-r-alert card-hover">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg text-red-600 dark:text-red-400">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-          </svg>
-        </div>
-        <h2 class="text-2xl font-bold text-red-600 dark:text-red-400">تنبيهات لغوية مهمة</h2>
-      </div>
+    <!-- Main Content Flow -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-24 md:space-y-32">
 
-      <p class="text-lg text-slate-600 dark:text-slate-400 mb-4">من أشهر الأخطاء في قراءة السورة:</p>
+        <!-- 1. The Surah (Quranic Theme) -->
+        <section class="reveal-element">
+            <div class="apple-card bg-quran-bg dark:bg-[#1a231f] rounded-[32px] p-10 md:p-16 shadow-apple hover:shadow-apple-hover dark:shadow-apple-dark dark:hover:shadow-apple-dark-hover border border-quran-border/30 dark:border-white/5 relative overflow-hidden flex flex-col items-center text-center">
+                <span class="text-sm font-semibold tracking-widest text-quran-text/60 dark:text-emerald-400/60 uppercase mb-8">سورة الناس</span>
+                <div class="font-quran quran-text text-3xl md:text-5xl lg:text-6xl text-quran-text dark:text-emerald-50 w-full max-w-3xl leading-relaxed">
+                    ﴿ قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ ﴾
+                </div>
+            </div>
+        </section>
 
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl">
-          <div class="font-quran text-xl text-center mb-2">﴿ مَلِكِ النَّاسِ ﴾</div>
-          <ul class="text-slate-700 dark:text-slate-300 space-y-2 text-sm leading-relaxed text-center">
-            <li>تُقرأ <span class="font-bold text-red-500">بحذف الألف</span>: مَلِكِ الناس</li>
-            <li>ولم تُقرأ: <span class="line-through text-slate-400">مالك الناس</span> كما في سورة الفاتحة.</li>
-          </ul>
-        </div>
+        <!-- 2. Language Alerts (Language Theme: Old Paper/Parchment feel) -->
+        <section class="reveal-element">
+            <div class="apple-card bg-white/60 dark:bg-[#1f2937]/40 backdrop-blur-md rounded-[32px] p-10 md:p-14 shadow-apple hover:shadow-apple-hover dark:shadow-apple-dark dark:hover:shadow-apple-dark-hover border border-black/5 dark:border-white/5">
+                <header class="mb-12">
+                    <h2 class="text-2xl md:text-3xl font-semibold text-slate-800 dark:text-slate-100 flex items-center gap-4">
+                        <span class="w-2 h-8 rounded-full bg-lang-accent dark:bg-amber-500/80"></span>
+                        تنبيهات لغوية دقيقة
+                    </h2>
+                    <p class="text-slate-500 dark:text-slate-400 mt-4 text-lg">أبرز ما يقع فيه الخطأ أثناء القراءة:</p>
+                </header>
 
-        <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl">
-          <div class="font-quran text-xl text-center mb-2">الوسواس</div>
-          <ul class="text-slate-700 dark:text-slate-300 space-y-2 text-sm leading-relaxed text-center">
-            <li>تُقرأ <span class="font-bold text-red-500">بفتح الواو</span>: الوَسواس</li>
-            <li>وليس: <span class="line-through text-slate-400">الوِسواس</span></li>
-          </ul>
-        </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Item -->
+                    <div class="space-y-4">
+                        <div class="font-quran text-2xl text-center text-quran-text dark:text-emerald-100">﴿ مَلِكِ النَّاسِ ﴾</div>
+                        <div class="bg-lang-bg/50 dark:bg-black/20 rounded-2xl p-6 text-center h-full">
+                            <p class="text-slate-700 dark:text-slate-300">تُقرأ <span class="font-semibold text-lang-accent dark:text-amber-400">بحذف الألف</span>.</p>
+                            <p class="text-slate-500 dark:text-slate-500 text-sm mt-2">ولم تُقرأ: (مالك الناس) كما في الفاتحة.</p>
+                        </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="space-y-4">
+                        <div class="font-quran text-2xl text-center text-quran-text dark:text-emerald-100">الوَسْوَاس</div>
+                        <div class="bg-lang-bg/50 dark:bg-black/20 rounded-2xl p-6 text-center h-full">
+                            <p class="text-slate-700 dark:text-slate-300">تُقرأ <span class="font-semibold text-lang-accent dark:text-amber-400">بفتح الواو</span>.</p>
+                            <p class="text-slate-500 dark:text-slate-500 text-sm mt-2">وليس بكسرها (الوِسواس).</p>
+                        </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="space-y-4">
+                        <div class="font-quran text-2xl text-center text-quran-text dark:text-emerald-100">﴿ الْجِنَّةِ ﴾</div>
+                        <div class="bg-lang-bg/50 dark:bg-black/20 rounded-2xl p-6 text-center h-full">
+                            <p class="text-slate-700 dark:text-slate-300">المقصود هنا: <span class="font-semibold text-lang-accent dark:text-amber-400">الجِنّ</span>.</p>
+                            <p class="text-slate-500 dark:text-slate-500 text-sm mt-2">وليست الجنة المعروفة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl">
-          <div class="font-quran text-xl text-center mb-2">﴿ مِنَ الْجِنَّةِ وَالنَّاسِ ﴾</div>
-          <ul class="text-slate-700 dark:text-slate-300 space-y-2 text-sm leading-relaxed text-center">
-            <li>المقصود هنا: <span class="font-bold text-red-500">الجن</span></li>
-            <li>وليست الجنة المعروفة.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
+        <!-- 3. First Ayah (Tafsir & Language Blend) -->
+        <section class="reveal-element space-y-8">
+            <div class="text-center mb-16">
+                <span class="font-quran text-4xl md:text-5xl text-quran-text dark:text-emerald-100">﴿ قُلْ أَعُوذُ بِرَبِّ النَّاسِ ﴾</span>
+            </div>
 
-  <script>
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const darkIcon = document.getElementById('theme-toggle-dark-icon');
-    const lightIcon = document.getElementById('theme-toggle-light-icon');
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Meaning of A'ooth -->
+                <div class="apple-card bg-tafsir-bg dark:bg-slate-800/80 rounded-[32px] p-10 shadow-apple border border-black/5 dark:border-white/5">
+                    <h3 class="text-xl font-semibold text-slate-800 dark:text-white mb-6">معنى الاستعاذة</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-6">
+                        أعوذ: أي أعتصم وألتجئ بالله سبحانه وتعالى.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-slate-600 dark:text-slate-400">
+                            <span class="w-1.5 h-1.5 rounded-full bg-tafsir-accent dark:bg-slate-500"></span>
+                            الاعتصام والالتجاء
+                        </li>
+                        <li class="flex items-center gap-4 text-slate-600 dark:text-slate-400">
+                            <span class="w-1.5 h-1.5 rounded-full bg-tafsir-accent dark:bg-slate-500"></span>
+                            طلب الحماية
+                        </li>
+                        <li class="flex items-center gap-4 text-slate-600 dark:text-slate-400">
+                            <span class="w-1.5 h-1.5 rounded-full bg-tafsir-accent dark:bg-slate-500"></span>
+                            الافتقار التام إلى الله
+                        </li>
+                    </ul>
+                </div>
 
-    let savedTheme = null;
-    try {
-      savedTheme = localStorage.getItem('theme');
-    } catch (e) {}
+                <!-- Meaning of Rabb -->
+                <div class="apple-card bg-lang-bg dark:bg-[#2c2620]/40 rounded-[32px] p-10 shadow-apple border border-black/5 dark:border-white/5">
+                    <h3 class="text-xl font-semibold text-lang-accent dark:text-[#d4ba94] mb-6">الدلالة اللغوية لكلمة "الرب"</h3>
+                    <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed mb-6">
+                        تأتي في اللغة بمعاني: المالك، المربي، المتعهد، والمدبر. يقال: "ربّ الشيء" إذا تولاه أو ملكه.
+                    </p>
+                    <div class="bg-white/40 dark:bg-black/20 rounded-2xl p-6">
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            أما مع الله سبحانه فتجتمع فيها معاني الكمال: <strong class="font-semibold text-slate-800 dark:text-slate-200">الخالق، المالك، المدبر، والمربي لعباده بنعمه.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const useDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            <!-- Meaning of An-Nas (Parchment/Dictionary style) -->
+            <div class="apple-card bg-white/60 dark:bg-slate-800/40 backdrop-blur-md rounded-[32px] p-10 md:p-14 shadow-apple border border-black/5 dark:border-white/5 mt-8">
+                <div class="max-w-2xl">
+                    <h3 class="text-2xl font-semibold text-slate-800 dark:text-white mb-6">معنى كلمة "الناس" وأصلها</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8">
+                        اسم جمع لا مفرد له من لفظه (مفرده: إنسان من حيث المعنى). ويُطلق على جميع البشر أو طائفة منهم.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-10">
+                    <div class="border-r-2 border-slate-200 dark:border-slate-700 pr-6">
+                        <div class="font-quran text-xl text-quran-text dark:text-emerald-100 mb-2">﴿ بِرَبِّ النَّاسِ ﴾</div>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">المقصود: جميع الناس.</p>
+                    </div>
+                    <div class="border-r-2 border-slate-200 dark:border-slate-700 pr-6">
+                        <div class="font-quran text-xl text-quran-text dark:text-emerald-100 mb-2">﴿ مِنَ الْجِنَّةِ وَالنَّاسِ ﴾</div>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">المقصود: طائفة (شياطين الإنس).</p>
+                    </div>
+                </div>
 
-    if (useDark) {
-      document.documentElement.classList.add('dark');
-      lightIcon.classList.remove('hidden');
-    } else {
-      document.documentElement.classList.remove('dark');
-      darkIcon.classList.remove('hidden');
-    }
+                <div class="bg-lang-bg/50 dark:bg-[#2c2620]/30 rounded-2xl p-8 border border-black/5 dark:border-white/5">
+                    <h4 class="text-sm font-bold tracking-widest text-lang-accent dark:text-[#d4ba94] uppercase mb-4">نافذة اشتقاقية</h4>
+                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+                        أصلها <strong>"أُناس"</strong>، حُذفت الهمزة تخفيفًا لكثرة الاستعمال. وعند التصغير تعود الهمزة فيقال: <strong>"أُنَيْس"</strong>. وهي مأخوذة من الأُنس، وقيل من "النَّوْس" أي الحركة.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', function () {
-        darkIcon.classList.toggle('hidden');
-        lightIcon.classList.toggle('hidden');
+        <!-- 4. Deep Reflections (Premium Dark Theme for Balagha) -->
+        <section class="reveal-element">
+            <div class="apple-card bg-reflect-bg text-reflect-text rounded-[32px] p-10 md:p-16 shadow-apple dark:shadow-apple-dark relative overflow-hidden">
+                <!-- Abstract subtle light in the dark card -->
+                <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-reflect-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
 
-        const isDark = document.documentElement.classList.toggle('dark');
+                <header class="text-center mb-16 relative z-10">
+                    <h2 class="text-sm font-bold tracking-widest text-reflect-gold uppercase mb-6">لحظة تأمل وبلاغة</h2>
+                    <div class="font-quran text-3xl md:text-5xl leading-relaxed">
+                        ﴿ رَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ﴾
+                    </div>
+                </header>
 
-        try {
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        } catch (e) {}
-      });
-    }
-  </script>
+                <div class="grid md:grid-cols-3 gap-12 relative z-10 mb-16">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-white">الربوبية</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">تتضمن الخلق، التربية، التدبير، الرزق، والرحمة.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-white">الملك</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">الله هو مالك الناس والمتصرف فيهم. الملوك والعبيد كلهم تحت ملكه.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-white">الألوهية</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">الإله هو المعبود الحق. فالله وحده هو المستحق للعبادة والطاعة.</p>
+                    </div>
+                </div>
+
+                <!-- Subtle divider -->
+                <div class="w-full h-px bg-white/10 mb-16 relative z-10"></div>
+
+                <div class="grid md:grid-cols-2 gap-12 relative z-10">
+                    <div>
+                        <h4 class="text-lg font-semibold text-reflect-gold mb-4">لماذا لم تأتِ الواو بين الصفات؟</h4>
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            حذف العاطف يدل على اجتماع هذه الصفات كلها لله سبحانه على وجه الكمال واللزوم. الربوبية ليست هي الملك، والملك ليس الألوهية، لكل صفة معناها، لكنها اجتمعت جميعًا له.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-reflect-gold mb-4">التدرج العظيم</h4>
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            بدأت بالربوبية، ثم الملك، ثم الألوهية. لأن الربوبية تستلزم الملك، والملك يستلزم الألوهية؛ فالذي خلق وربّى ومَلَك، هو وحده المستحق للعبادة.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Ayah 4 & Hadith (Hadith Theme: Serene Green/Grey) -->
+        <section class="reveal-element space-y-12">
+            <div class="text-center mb-12">
+                <span class="font-quran text-3xl md:text-5xl text-quran-text dark:text-emerald-100">﴿ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴾</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="apple-card bg-white/60 dark:bg-slate-800/40 backdrop-blur-md rounded-[32px] p-10 shadow-apple border border-black/5 dark:border-white/5">
+                    <h3 class="text-xl font-semibold text-slate-800 dark:text-white mb-4">الوسواس</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+                        هو الموسوس الذي يلقي الشر والباطل في النفس. وقيل هو اسم للوسوسة نفسها، والأرجح أنه الموسوس.
+                    </p>
+                </div>
+                <div class="apple-card bg-white/60 dark:bg-slate-800/40 backdrop-blur-md rounded-[32px] p-10 shadow-apple border border-black/5 dark:border-white/5">
+                    <h3 class="text-xl font-semibold text-slate-800 dark:text-white mb-4">الخناس</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+                        الذي يتراجع ويتأخر إذا ذكر العبد ربه. فالشيطان يوسوس عند الغفلة ويخنس عند ذكر الله.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Premium Quote Block -->
+            <div class="apple-card bg-hadith-bg dark:bg-[#1a231f]/60 rounded-[32px] p-10 md:p-16 shadow-apple border-r-4 border-hadith-accent dark:border-emerald-600/50">
+                <p class="text-sm font-semibold tracking-widest text-hadith-accent dark:text-emerald-500 uppercase mb-8">أثر عظيم عن ابن عباس رضي الله عنهما</p>
+                <blockquote class="font-quran text-2xl md:text-4xl text-slate-800 dark:text-emerald-50 leading-relaxed mb-8">
+                    "الشيطان جاثم على قلب ابن آدم، فإذا سهى وغفل وسوس، وإذا ذكر الله خنس."
+                </blockquote>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                    في وصف الشيطان بـ "الخناس" طمأنينة عظيمة؛ فهو ضعيف يهرب بذكر الله ويتراجع بالاستقامة، لكن المعركة معه مستمرة.
+                </p>
+            </div>
+        </section>
+
+        <!-- 6. The Heart & Ayah 5 -->
+        <section class="reveal-element space-y-12">
+            <div class="text-center mb-12">
+                <span class="font-quran text-3xl md:text-5xl text-quran-text dark:text-emerald-100">﴿ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴾</span>
+            </div>
+
+            <div class="apple-card bg-white/60 dark:bg-slate-800/40 backdrop-blur-md rounded-[32px] p-10 md:p-16 shadow-apple border border-black/5 dark:border-white/5">
+                <div class="max-w-3xl mx-auto space-y-16">
+                    
+                    <div class="text-center space-y-6">
+                        <h3 class="text-2xl font-semibold text-slate-800 dark:text-white">القلب: حصن الإنسان</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+                            الوسوسة تكون في الصدور (القلوب). والقلب أعظم ما يحرص الشيطان على إفساده؛ لأنه الأساس.
+                        </p>
+                        <div class="font-quran text-2xl text-quran-text dark:text-emerald-200 mt-6">
+                            ﴿ يَوْمَ لَا يَنْفَعُ مَالٌ وَلَا بَنُونَ ۝ إِلَّا مَنْ أَتَى اللَّهَ بِقَلْبٍ سَلِيمٍ ﴾
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-12 pt-12 border-t border-black/5 dark:border-white/5">
+                        <div>
+                            <h4 class="text-xl font-semibold text-slate-800 dark:text-white mb-6">أشكال الوسوسة</h4>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">ليست نوعًا واحدًا، فقد تتخذ أشكالاً خفية:</p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 text-sm">خواطر</span>
+                                <span class="px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 text-sm">نقاشاً</span>
+                                <span class="px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 text-sm">إعلاماً</span>
+                                <span class="px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 text-sm">تزيين الباطل</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-slate-800 dark:text-white mb-6">استهداف الأصول</h4>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                يحرص أهل الضلال على إفساد الأصول (تشكيك في الدين، إسقاط السنة) لأن فساد الأصل يؤدي حتماً لفساد الفروع.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Ayah 6 & Conclusion Summary -->
+        <section class="reveal-element space-y-12">
+            <div class="text-center mb-12">
+                <span class="font-quran text-3xl md:text-5xl text-quran-text dark:text-emerald-100">﴿ مِنَ الْجِنَّةِ وَالنَّاسِ ﴾</span>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3 apple-card bg-tafsir-bg dark:bg-slate-800/60 rounded-[32px] p-10 shadow-apple border border-black/5 dark:border-white/5">
+                    <h3 class="text-xl font-semibold text-slate-800 dark:text-white mb-6">شياطين الإنس والجن</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-6">
+                        المقصود صنفان، وشياطين الإنس قد يكون ضررهم أعظم لأنهم ينشرون الباطل ويدافعون عنه. قُدِّمت "الجنة" لأنهم أصل الوسوسة، وللحفاظ على جمال الفاصلة الصوتية.
+                    </p>
+                    
+                    <div class="mt-8 pt-8 border-t border-black/5 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6 opacity-70">
+                        <span class="text-sm font-semibold text-slate-500">وصفه: الْوَسْوَاسِ الْخَنَّاسِ</span>
+                        <svg class="w-4 h-4 text-slate-300 hidden sm:block rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        <span class="text-sm font-semibold text-slate-500">عمله: يُوَسْوِسُ</span>
+                        <svg class="w-4 h-4 text-slate-300 hidden sm:block rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        <span class="text-sm font-semibold text-slate-500">حقيقته: مِنَ الْجِنَّةِ وَالنَّاسِ</span>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 apple-card bg-reflect-bg text-white rounded-[32px] p-10 shadow-apple dark:shadow-apple-dark flex flex-col justify-center">
+                    <h3 class="text-lg font-semibold text-reflect-gold mb-6">المعاني العظيمة</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        في سورة الفلق نستعيذ بصفة واحدة (الرب) من أربعة أشياء. وفي سورة الناس نستعيذ بثلاث صفات (رب، ملك، إله) من شيء واحد (الوسوسة).
+                    </p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        هذا يدل على عظم خطر الوسوسة التي تستهدف أغلى ما يملكه الإنسان: قلبه ودينه. العبرة بالمعاني لا بكثرة الألفاظ.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Spiritual Note -->
+        <section class="reveal-element pt-12 pb-24 text-center max-w-2xl mx-auto">
+            <div class="w-12 h-px bg-slate-300 dark:bg-slate-700 mx-auto mb-12"></div>
+            <p class="text-slate-500 dark:text-slate-400 text-xl leading-relaxed font-light">
+                نسأل الله عز وجل أن يقينا وإياكم شر وساوس الشياطين، وأن يرزقنا سلامة القلوب، والثبات على الحق، وحسن الالتجاء إليه سبحانه.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Interactive Scripts (Theme & Scroll Animation) -->
+    <script>
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function updateThemeIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                lightIcon.classList.remove('hidden');
+                darkIcon.classList.add('hidden');
+            } else {
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        }
+
+        // Init Theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        updateThemeIcon();
+
+        // Toggle Theme Event
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+            updateThemeIcon();
+        });
+
+        // Apple-style Scroll Reveal Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Animate only once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-element').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
