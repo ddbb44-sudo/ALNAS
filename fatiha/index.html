@@ -1,463 +1,173 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تأملات لغوية وتفسيرية في سورة الفاتحة</title>
+    <title>صفحة سورة الفاتحة تعمل بنجاح</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"IBM Plex Sans Arabic"', 'sans-serif'],
-                        quran: ['"Amiri"', 'serif'],
-                    },
-                    colors: {
-                        apple: {
-                            light: '#F5F3EF',
-                            dark: '#111827'
-                        },
-                        quran: {
-                            bg: '#F8F6F1',
-                            text: '#31473A',
-                            border: '#D6CFC2'
-                        },
-                        lang: {
-                            bg: '#F4EFE7',
-                            accent: '#8B6F47'
-                        },
-                        tafsir: {
-                            bg: '#F3F4F6',
-                            accent: '#6B7280'
-                        },
-                        reflect: {
-                            bg: '#1F2937',
-                            text: '#F9FAFB',
-                            gold: '#C6A96B'
-                        },
-                        hadith: {
-                            bg: '#F5F7F4',
-                            accent: '#4B6B4E'
-                        }
-                    },
-                    boxShadow: {
-                        'apple': '0 8px 32px -8px rgba(0, 0, 0, 0.04), 0 4px 16px -4px rgba(0, 0, 0, 0.02)',
-                        'apple-hover': '0 20px 48px -12px rgba(0, 0, 0, 0.08), 0 12px 24px -8px rgba(0, 0, 0, 0.04)',
-                        'apple-dark': '0 8px 32px -8px rgba(0, 0, 0, 0.3)',
-                        'apple-dark-hover': '0 20px 48px -12px rgba(0, 0, 0, 0.5)'
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: linear-gradient(135deg, #f5f3ef 0%, #eae4d6 50%, #d6cfc2 100%);
+            color: #2d3a32;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(156, 163, 175, 0.3);
-            border-radius: 10px;
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.5;
+            z-index: 0;
+            pointer-events: none;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(156, 163, 175, 0.5);
+        body::before {
+            width: 500px; height: 500px;
+            background: #c6a96b;
+            top: -150px; right: -150px;
+        }
+        body::after {
+            width: 450px; height: 450px;
+            background: #8fae8a;
+            bottom: -150px; left: -150px;
         }
 
-        .quran-text {
-            line-height: 2.6;
-            word-spacing: 4px;
+        .card {
+            position: relative;
+            z-index: 1;
+            max-width: 560px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 28px;
+            padding: 56px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.15), 0 8px 24px -8px rgba(0, 0, 0, 0.05);
         }
 
-        p {
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(49, 71, 58, 0.08);
+            color: #31473a;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .badge .dot {
+            width: 8px; height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #4ade80;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.85); }
+        }
+
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: clamp(28px, 5vw, 38px);
+            color: #31473a;
+            margin-bottom: 28px;
             line-height: 1.8;
+        }
+
+        h1 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 16px;
             letter-spacing: -0.01em;
         }
 
-        .apple-card {
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform, box-shadow;
-        }
-        .apple-card:hover {
-            transform: translateY(-3px) scale(1.002);
-        }
-
-        .glass-nav {
-            background: rgba(245, 243, 239, 0.6);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-        }
-        .dark .glass-nav {
-            background: rgba(17, 24, 39, 0.6);
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #5b6b62;
+            margin-bottom: 36px;
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .ambient-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: #31473a;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            box-shadow: 0 6px 18px -4px rgba(49, 71, 58, 0.4);
         }
-        .ambient-blob {
-            position: absolute;
-            filter: blur(120px);
-            opacity: 0.4;
-            border-radius: 50%;
+
+        .home-link:hover {
+            background: #243429;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px -4px rgba(49, 71, 58, 0.5);
+        }
+
+        .home-link svg {
+            width: 16px; height: 16px;
+        }
+
+        .footer {
+            margin-top: 32px;
+            font-size: 13px;
+            color: #94a39a;
         }
     </style>
 </head>
-<body class="bg-apple-light dark:bg-apple-dark text-slate-800 dark:text-slate-200 transition-colors duration-700 font-sans selection:bg-quran-text selection:text-white dark:selection:bg-reflect-gold dark:selection:text-apple-dark">
+<body>
+    <main class="card">
+        <span class="badge">
+            <span class="dot"></span>
+            الصفحة تعمل بنجاح
+        </span>
 
-    <!-- Ambient Background blobs -->
-    <div class="ambient-bg dark:opacity-30">
-        <div class="ambient-blob w-[600px] h-[600px] bg-[#e5e1d8] dark:bg-slate-800 -top-[200px] -right-[200px]"></div>
-        <div class="ambient-blob w-[500px] h-[500px] bg-[#f0ebd8] dark:bg-slate-900 top-[40%] -left-[200px]"></div>
-    </div>
+        <div class="bismillah">﴿ بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴾</div>
 
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-50 glass-nav border-b border-black/5 dark:border-white/5 transition-colors duration-700">
-        <div class="max-w-4xl mx-auto px-6 py-5 flex justify-between items-center gap-4">
-            <h1 class="text-lg md:text-xl font-semibold tracking-tight text-slate-800 dark:text-slate-200">
-                تأملات في سورة الفاتحة
-            </h1>
+        <h1>صفحة سورة الفاتحة تعمل بنجاح</h1>
+        <p>
+            هذه صفحة تجريبية للتأكد من أن الرابط يعمل بشكل صحيح عبر GitHub Pages.
+            المحتوى الكامل سيُضاف لاحقاً بإذن الله.
+        </p>
 
-            <div class="flex items-center gap-2">
-                <a href="../" class="px-3 py-2 rounded-full text-sm text-slate-600 dark:text-slate-400 hover:bg-black/5 dark:hover:bg-white/10 transition-colors duration-300 flex items-center gap-2" aria-label="الرجوع للصفحة الرئيسية">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    <span class="hidden sm:inline">الرئيسية</span>
-                </a>
+        <a href="../" class="home-link">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            العودة إلى الصفحة الرئيسية
+        </a>
 
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors duration-300 focus:outline-none" aria-label="Toggle Dark Mode">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-600 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                    </svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-slate-600 dark:text-slate-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.32a1 1 0 011.415 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-2.32 4.22a1 1 0 010 1.415l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.415 0zM10 18a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1 1zm-4.22-2.32a1 1 0 01-1.415 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.415zM2 10a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zm2.32-4.22a1 1 0 010-1.415l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.415 0z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-24 md:space-y-32">
-
-        <!-- 1. السورة كاملة -->
-        <section>
-            <div class="apple-card bg-quran-bg dark:bg-[#1a231f] rounded-[32px] p-10 md:p-16 shadow-apple hover:shadow-apple-hover dark:shadow-apple-dark dark:hover:shadow-apple-dark-hover border border-quran-border/30 dark:border-white/5 relative overflow-hidden flex flex-col items-center text-center">
-                <span class="text-sm font-semibold tracking-widest text-quran-text/60 dark:text-emerald-400/60 uppercase mb-8">سورة الفاتحة</span>
-                <div class="font-quran quran-text text-3xl md:text-5xl lg:text-6xl text-quran-text dark:text-emerald-50 w-full max-w-3xl leading-relaxed">
-                    ﴿ بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ۝ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ۝ الرَّحْمَٰنِ الرَّحِيمِ ۝ مَالِكِ يَوْمِ الدِّينِ ۝ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ۝ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ۝ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴾
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. أسماء السورة ومكانتها -->
-        <section>
-            <div class="apple-card bg-white/60 dark:bg-[#1f2937]/40 backdrop-blur-md rounded-[32px] p-10 md:p-14 shadow-apple hover:shadow-apple-hover dark:shadow-apple-dark dark:hover:shadow-apple-dark-hover border border-black/5 dark:border-white/5">
-                <header class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-semibold text-slate-800 dark:text-slate-100 flex items-center gap-4">
-                        <span class="w-2 h-8 rounded-full bg-lang-accent dark:bg-amber-500/80"></span>
-                        أسماء السورة ومكانتها
-                    </h2>
-                    <p class="text-slate-500 dark:text-slate-400 mt-4 text-lg">من أكثر السور أسماءً في القرآن، وكل اسم يدلّ على معنى عظيم.</p>
-                </header>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="space-y-4">
-                        <div class="font-quran text-2xl text-center text-quran-text dark:text-emerald-100">فاتحة الكتاب</div>
-                        <div class="bg-lang-bg/50 dark:bg-black/20 rounded-2xl p-6 text-center h-full">
-                            <p class="text-slate-700 dark:text-slate-300">لأنها <span class="font-semibold text-lang-accent dark:text-amber-400">مفتتح المصحف</span>.</p>
-                            <p class="text-slate-500 dark:text-slate-500 text-sm mt-2">بها يبدأ القارئ تلاوته.</p>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="font-quran text-2xl text-center text-quran-text dark:text-emerald-100">أمّ القرآن</div>
-                        <div class="bg-lang-bg/50 dark:bg-black/20 rounded-2xl p-6 text-center h-full">
-                            <p class="text-slate-700 dark:text-slate-300">لأنها <span class="font-semibold text-lang-accent dark:text-amber-400">جمعت مقاصده</span>.</p>
-                            <p class="text-slate-500 dark:text-slate-500 text-sm mt-2">من توحيد وعبادة وهداية.</p>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="font-quran text-2xl text-center text-quran-text dark:text-emerald-100">السبع المثاني</div>
-                        <div class="bg-lang-bg/50 dark:bg-black/20 rounded-2xl p-6 text-center h-full">
-                            <p class="text-slate-700 dark:text-slate-300">سبع آيات <span class="font-semibold text-lang-accent dark:text-amber-400">تُثنّى</span> في كل صلاة.</p>
-                            <p class="text-slate-500 dark:text-slate-500 text-sm mt-2">قال تعالى: ﴿ولقد آتيناك سبعًا من المثاني﴾.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. البسملة والحمد -->
-        <section class="space-y-8">
-            <div class="text-center mb-16">
-                <span class="font-quran text-4xl md:text-5xl text-quran-text dark:text-emerald-100">﴿ بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ۝ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ﴾</span>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- البسملة -->
-                <div class="apple-card bg-tafsir-bg dark:bg-slate-800/80 rounded-[32px] p-10 shadow-apple border border-black/5 dark:border-white/5">
-                    <h3 class="text-xl font-semibold text-slate-800 dark:text-white mb-6">معنى البسملة</h3>
-                    <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-6">
-                        أي: أبدأ مستعينًا باسم الله، متبركًا به، طالبًا منه العون والتوفيق في كل ما أفعل.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-4 text-slate-600 dark:text-slate-400">
-                            <span class="w-1.5 h-1.5 rounded-full bg-tafsir-accent dark:bg-slate-500"></span>
-                            <span><strong class="text-slate-800 dark:text-slate-200">الله</strong>: عَلَمٌ على الذات الإلهية.</span>
-                        </li>
-                        <li class="flex items-center gap-4 text-slate-600 dark:text-slate-400">
-                            <span class="w-1.5 h-1.5 rounded-full bg-tafsir-accent dark:bg-slate-500"></span>
-                            <span><strong class="text-slate-800 dark:text-slate-200">الرحمٰن</strong>: واسع الرحمة بجميع خلقه.</span>
-                        </li>
-                        <li class="flex items-center gap-4 text-slate-600 dark:text-slate-400">
-                            <span class="w-1.5 h-1.5 rounded-full bg-tafsir-accent dark:bg-slate-500"></span>
-                            <span><strong class="text-slate-800 dark:text-slate-200">الرحيم</strong>: خاصٌّ رحمته بالمؤمنين.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- الحمد -->
-                <div class="apple-card bg-lang-bg dark:bg-[#2c2620]/40 rounded-[32px] p-10 shadow-apple border border-black/5 dark:border-white/5">
-                    <h3 class="text-xl font-semibold text-lang-accent dark:text-[#d4ba94] mb-6">الفرق بين الحمد والشكر</h3>
-                    <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed mb-6">
-                        الحمد: ثناءٌ على المحمود بصفاته الجميلة، سواء أنعم عليك أم لا. والشكر: مقابلة النعمة بالاعتراف والثناء.
-                    </p>
-                    <div class="bg-white/40 dark:bg-black/20 rounded-2xl p-6">
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            فالحمد <strong class="font-semibold text-slate-800 dark:text-slate-200">أعمّ من جهة الأسباب</strong> (يكون على النعمة وعلى الصفة)، والشكر <strong class="font-semibold text-slate-800 dark:text-slate-200">أعمّ من جهة الوسائل</strong> (يكون بالقلب واللسان والجوارح).
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- العالمين -->
-            <div class="apple-card bg-white/60 dark:bg-slate-800/40 backdrop-blur-md rounded-[32px] p-10 md:p-14 shadow-apple border border-black/5 dark:border-white/5 mt-8">
-                <div class="max-w-2xl">
-                    <h3 class="text-2xl font-semibold text-slate-800 dark:text-white mb-6">معنى "ربّ العالمين"</h3>
-                    <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8">
-                        "العالمين" جمع "عالَم"، وهو كل ما سوى الله. وسُمّي عالَمًا لأنه عَلَمٌ ودليلٌ على وجود خالقه سبحانه.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 mb-10">
-                    <div class="border-r-2 border-slate-200 dark:border-slate-700 pr-6">
-                        <div class="font-quran text-xl text-quran-text dark:text-emerald-100 mb-2">الربوبية العامة</div>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm">الخلق والرزق والتدبير لكل المخلوقات.</p>
-                    </div>
-                    <div class="border-r-2 border-slate-200 dark:border-slate-700 pr-6">
-                        <div class="font-quran text-xl text-quran-text dark:text-emerald-100 mb-2">الربوبية الخاصة</div>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm">تربية الأنبياء وأوليائه بالإيمان والهداية.</p>
-                    </div>
-                </div>
-
-                <div class="bg-lang-bg/50 dark:bg-[#2c2620]/30 rounded-2xl p-8 border border-black/5 dark:border-white/5">
-                    <h4 class="text-sm font-bold tracking-widest text-lang-accent dark:text-[#d4ba94] uppercase mb-4">نافذة لغوية</h4>
-                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-                        كلمة <strong>"الرب"</strong> في اللغة تجمع معاني: المالك، السيد، المربّي، المصلِح، المتعهّد. ولا تُطلق مطلقةً مُعرّفةً بأل إلا على الله سبحانه؛ فإذا أُضيفت قيل: ربّ الدار، ربّ الإبل.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. تأملات في الرحمن الرحيم ومالك يوم الدين -->
-        <section>
-            <div class="apple-card bg-reflect-bg text-reflect-text rounded-[32px] p-10 md:p-16 shadow-apple dark:shadow-apple-dark relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-reflect-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
-
-                <header class="text-center mb-16 relative z-10">
-                    <h2 class="text-sm font-bold tracking-widest text-reflect-gold uppercase mb-6">بين الرحمة والمُلك</h2>
-                    <div class="font-quran text-3xl md:text-5xl leading-relaxed">
-                        ﴿ الرَّحْمَٰنِ الرَّحِيمِ ۝ مَالِكِ يَوْمِ الدِّينِ ﴾
-                    </div>
-                </header>
-
-                <div class="grid md:grid-cols-3 gap-12 relative z-10 mb-16">
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-white">الرحمٰن</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">صفة عامة، رحمته وسعت كل شيء في الدنيا، مؤمنهم وكافرهم.</p>
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-white">الرحيم</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">صفة خاصة، رحمته بالمؤمنين في الآخرة، فيدخلهم جنته.</p>
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-white">مالك يوم الدين</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">المالك المتصرف وحده يوم الجزاء، حيث لا مُلك لأحد سواه.</p>
-                    </div>
-                </div>
-
-                <div class="border-t border-white/10 pt-12 relative z-10">
-                    <p class="text-slate-300 text-base leading-relaxed text-center max-w-2xl mx-auto">
-                        فهي رحمةٌ تُطمئن القلب، يعقبها ذكر يومٍ يحاسب الله فيه عباده؛ ليجتمع في القلب <strong class="text-reflect-gold">الرجاء والخوف</strong>، وهما جناحا العبودية.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. إياك نعبد وإياك نستعين -->
-        <section>
-            <div class="apple-card bg-hadith-bg dark:bg-[#1a231f]/60 rounded-[32px] p-10 md:p-14 shadow-apple hover:shadow-apple-hover dark:shadow-apple-dark border border-black/5 dark:border-white/5">
-                <header class="mb-12 text-center">
-                    <h2 class="text-2xl md:text-3xl font-semibold text-slate-800 dark:text-slate-100 mb-4">
-                        ﴿ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴾
-                    </h2>
-                    <p class="text-slate-500 dark:text-slate-400 text-lg">محور السورة، وفيها سرّ التوحيد.</p>
-                </header>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white/60 dark:bg-black/20 rounded-2xl p-8">
-                        <h3 class="font-semibold text-hadith-accent dark:text-emerald-300 mb-4">تقديم المعمول</h3>
-                        <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-                            تقديم "إيّاك" على "نعبد" و"نستعين" يفيد <strong>الحصر والاختصاص</strong>: لا نعبد إلا أنت، ولا نستعين إلا بك.
-                        </p>
-                    </div>
-                    <div class="bg-white/60 dark:bg-black/20 rounded-2xl p-8">
-                        <h3 class="font-semibold text-hadith-accent dark:text-emerald-300 mb-4">من المفرد إلى الجمع</h3>
-                        <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-                            بدأ العبد بالخطاب الفردي كأنه يناجي ربه، ثم انتقل إلى ضمير الجمع "نعبد" تواضعًا، واستشعارًا لجماعة المؤمنين.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mt-10 bg-hadith-bg/40 dark:bg-emerald-900/10 rounded-2xl p-8 border border-hadith-accent/10 dark:border-emerald-500/10">
-                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-center">
-                        قُدِّمت العبادة على الاستعانة لأن العبادة هي <strong>المقصد</strong>، والاستعانة <strong>وسيلة</strong> إليها. ولأنّ حقّ الله مُقدَّمٌ على حظّ العبد.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. الصراط المستقيم -->
-        <section>
-            <div class="apple-card bg-white/60 dark:bg-slate-800/40 backdrop-blur-md rounded-[32px] p-10 md:p-14 shadow-apple hover:shadow-apple-hover dark:shadow-apple-dark border border-black/5 dark:border-white/5">
-                <header class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-semibold text-slate-800 dark:text-slate-100 flex items-center gap-4">
-                        <span class="w-2 h-8 rounded-full bg-quran-text dark:bg-emerald-500/80"></span>
-                        ﴿ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴾
-                    </h2>
-                    <p class="text-slate-500 dark:text-slate-400 mt-4 text-lg">الدعاء الجامع، وأعظم ما يسأله العبد ربّه.</p>
-                </header>
-
-                <div class="space-y-6">
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-quran-bg/60 dark:bg-emerald-900/10 rounded-2xl p-6 text-center">
-                            <div class="font-quran text-2xl text-quran-text dark:text-emerald-100 mb-2">اهْدِنَا</div>
-                            <p class="text-sm text-slate-600 dark:text-slate-400">دلّنا، وثبّتنا، وزدنا هدًى.</p>
-                        </div>
-                        <div class="bg-quran-bg/60 dark:bg-emerald-900/10 rounded-2xl p-6 text-center">
-                            <div class="font-quran text-2xl text-quran-text dark:text-emerald-100 mb-2">الصِّرَاطَ</div>
-                            <p class="text-sm text-slate-600 dark:text-slate-400">الطريق الواضح الواسع الذي لا اعوجاج فيه.</p>
-                        </div>
-                        <div class="bg-quran-bg/60 dark:bg-emerald-900/10 rounded-2xl p-6 text-center">
-                            <div class="font-quran text-2xl text-quran-text dark:text-emerald-100 mb-2">الْمُسْتَقِيمَ</div>
-                            <p class="text-sm text-slate-600 dark:text-slate-400">المستوي الذي يوصل إلى المقصود بأقصر سبيل.</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-lang-bg/40 dark:bg-[#2c2620]/30 rounded-2xl p-8 border border-black/5 dark:border-white/5">
-                        <h4 class="text-sm font-bold tracking-widest text-lang-accent dark:text-[#d4ba94] uppercase mb-4">لماذا نسأل الهداية ونحن مهتدون؟</h4>
-                        <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-                            الهداية درجات: هداية الدلالة، وهداية التوفيق، وهداية الثبات، وهداية المزيد. والمؤمن مفتقر في كل لحظة إلى ربّه ليثبّته ويزيده، فلا يَستَغْنِي عن هذا الدعاء طرفة عين.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. الأصناف الثلاثة -->
-        <section>
-            <div class="grid lg:grid-cols-3 gap-8">
-                <div class="apple-card bg-quran-bg dark:bg-emerald-900/20 rounded-[32px] p-8 shadow-apple border border-quran-border/30 dark:border-emerald-500/10">
-                    <div class="font-quran text-2xl text-quran-text dark:text-emerald-100 mb-4 text-center">المُنعَم عليهم</div>
-                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-sm text-center">
-                        ﴿ النَّبِيِّينَ وَالصِّدِّيقِينَ وَالشُّهَدَاءِ وَالصَّالِحِينَ ﴾
-                    </p>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs mt-4 text-center">جمعوا بين العلم والعمل.</p>
-                </div>
-
-                <div class="apple-card bg-white dark:bg-slate-800/60 rounded-[32px] p-8 shadow-apple border border-black/5 dark:border-white/5">
-                    <div class="font-quran text-2xl text-rose-700 dark:text-rose-300 mb-4 text-center">المغضوب عليهم</div>
-                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-sm text-center">
-                        من علم الحق ولم يعمل به.
-                    </p>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs mt-4 text-center">كاليهود الذين عرفوا فعاندوا.</p>
-                </div>
-
-                <div class="apple-card bg-white dark:bg-slate-800/60 rounded-[32px] p-8 shadow-apple border border-black/5 dark:border-white/5">
-                    <div class="font-quran text-2xl text-amber-700 dark:text-amber-300 mb-4 text-center">الضّالّين</div>
-                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-sm text-center">
-                        من عمل بغير علم.
-                    </p>
-                    <p class="text-slate-500 dark:text-slate-400 text-xs mt-4 text-center">كالنصارى الذين تعبّدوا على جهل.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- خاتمة روحانية -->
-        <section class="pt-12 pb-24 text-center max-w-2xl mx-auto">
-            <div class="w-12 h-px bg-slate-300 dark:bg-slate-700 mx-auto mb-12"></div>
-            <p class="text-slate-500 dark:text-slate-400 text-xl leading-relaxed font-light">
-                نسأل الله أن يجعلنا من أهل الفاتحة، الذين يتدبّرون آياتها، ويسلكون صراطه المستقيم، ويحشرون في زمرة المُنعَم عليهم.
-            </p>
-
-            <div class="mt-12">
-                <a href="../" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-quran-text/10 dark:bg-emerald-500/10 text-quran-text dark:text-emerald-300 hover:bg-quran-text/20 dark:hover:bg-emerald-500/20 transition-colors duration-300 text-sm font-medium">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    العودة إلى الصفحة الرئيسية
-                </a>
-            </div>
-        </section>
-
+        <div class="footer">ALNAS · /fatiha</div>
     </main>
-
-    <!-- Theme Script -->
-    <script>
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-        function updateThemeIcon() {
-            if (document.documentElement.classList.contains('dark')) {
-                lightIcon.classList.remove('hidden');
-                darkIcon.classList.add('hidden');
-            } else {
-                darkIcon.classList.remove('hidden');
-                lightIcon.classList.add('hidden');
-            }
-        }
-
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-        updateThemeIcon();
-
-        themeToggleBtn.addEventListener('click', function() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-            updateThemeIcon();
-        });
-    </script>
 </body>
 </html>
