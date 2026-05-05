@@ -66,29 +66,29 @@
     <!-- Glassmorphism Navbar -->
     <nav class="fixed top-0 w-full z-50 bg-apple-light/70 dark:bg-apple-dark/70 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-colors duration-500">
         <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="font-sans font-medium text-lg tracking-wide text-gray-800 dark:text-gray-200">
+            <div class="font-sans font-medium text-lg text-gray-800 dark:text-gray-200">
                 تأملات ومنهجية
             </div>
-            <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors duration-300">
-                <!-- Sun Icon (Hidden in Light Mode) -->
-                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-gray-200" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.32a1 1 0 011.415 0l.708.707a1 1 0 01-1.414 1.415l-.708-.708a1 1 0 010-1.414zm3.78 5.68a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-2.32 4.22a1 1 0 010 1.415l-.707.708a1 1 0 01-1.415-1.414l.708-.708a1 1 0 011.414 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4.22-2.32a1 1 0 01-1.415 0l-.708-.707a1 1 0 011.414-1.415l.708.708a1 1 0 010 1.414zM3 10a1 1 0 011-1h1a1 1 0 110 2H4a1 1 0 01-1-1zM5.68 4.22a1 1 0 010-1.415l.707-.708a1 1 0 011.415 1.414l-.708.708a1 1 0 01-1.414 0zM10 6a4 4 0 100 8 4 4 0 000-8z"></path>
-                </svg>
-                <!-- Moon Icon (Hidden in Dark Mode) -->
-                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                </svg>
-            </button>
-        </div>
-    </nav>
+            <div class="flex items-center gap-2">
+                <button id="font-size-toggle" aria-label="Toggle Font Size" class="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors duration-300">
+                    <svg class="w-6 h-6 text-gray-700 dark:text-gray-200" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 4L3 19H5.5L6.9 15H11.1L12.5 19H15L9 4ZM7.6 13L9 9.1L10.4 13H7.6ZM19 11V14H16V16H19V19H21V16H24V14H21V11H19Z"/>
+                    </svg>
+                </button>
+                <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors duration-300">
+                    <!-- Sun Icon (Hidden in Light Mode) -->
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-gray-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.32a1 1 0 011.415 0l.708.707a1 1 0 01-1.414 1.415l-.708-.708a1 1 0 010-1.414zm3.78 5.68a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-2.32 4.22a1 1 0 010 1.415l-.707.708a1 1 0 01-1.415-1.414l.708-.708a1 1 0 011.414 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4.22-2.32a1 1 0 01-1.415 0l-.708-.707a1 1 0 011.414-1.415l.708.708a1 1 0 010 1.414zM3 10a1 1 0 011-1h1a1 1 0 110 2H4a1 1 0 01-1-1zM5.68 4.22a1 1 0 010-1.415l.707-.708a1 1 0 011.415 1.414l-.708.708a1 1 0 01-1.414 0zM10 6a4 4 0 100 8 4 4 0 000-8z"></path>
+                    </svg>
+                    <!-- Moon Icon (Hidden in Dark Mode) -->
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
 
-    <!-- Main Content Container -->
-    <main class="max-w-4xl mx-auto pt-40 pb-32 px-6 space-y-24">
-
-        <!-- Hero Section -->
-        <header class="text-center space-y-6 mb-32">
-            <h1 class="font-quran text-5xl md:text-7xl font-bold text-quran-text dark:text-gray-100 leading-tight">
-                تفسير سورة الفاتحة
+        <!-- Main Content Container -->
             </h1>
             <p class="text-xl text-gray-500 dark:text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
                 رحلة تدبرية في أعظم سور القرآن، لفهم هداياتها، واستحضار القلب في مناجاة الرب.
@@ -97,7 +97,7 @@
 
         <!-- Section 1: Methodology (Tafsir Card) -->
         <article class="bg-tafsir-bg dark:bg-gray-800/40 rounded-[32px] p-10 md:p-16 shadow-apple hover:shadow-apple-hover dark:shadow-apple-dark dark:hover:shadow-apple-dark-hover border border-black/5 dark:border-white/5 transition-all duration-500 hover:-translate-y-1">
-            <h2 class="text-sm font-semibold tracking-wider text-tafsir-accent dark:text-gray-400 uppercase mb-8">أولًا: منهجية الدراسة والمراجع</h2>
+            <h2 class="font-sans text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">أولًا: منهجية الدراسة والمراجع</h2>
             
             <div class="space-y-12">
                 <div>
@@ -144,7 +144,7 @@
 
         <!-- Introduction Header -->
         <div class="text-center pt-12 pb-4">
-            <h2 class="font-sans text-2xl font-medium text-gray-400 dark:text-gray-500 uppercase tracking-widest">ثانيًا: التأملات في مقدمات السورة</h2>
+            <h2 class="font-sans text-3xl font-bold text-gray-900 dark:text-gray-100">ثانيًا: التأملات في مقدمات السورة</h2>
         </div>
 
         <!-- Section: Isti'adha (Lang Card) -->
@@ -198,7 +198,7 @@
 
         <!-- Verses Header -->
         <div class="text-center pt-12 pb-4">
-            <h2 class="font-sans text-2xl font-medium text-gray-400 dark:text-gray-500 uppercase tracking-widest">ثالثًا: تفسير الآيات من الأولى إلى السابعة</h2>
+            <h2 class="font-sans text-3xl font-bold text-gray-900 dark:text-gray-100">ثالثًا: تفسير الآيات من الأولى إلى السابعة</h2>
         </div>
 
         <!-- Verse 1 Container -->
@@ -368,7 +368,7 @@
 
         <!-- Section 4 Header -->
         <div class="text-center pt-12 pb-4">
-            <h2 class="font-sans text-2xl font-medium text-gray-400 dark:text-gray-500 uppercase tracking-widest">رابعًا: إضاءات في التلاوة والبلاغة</h2>
+            <h2 class="font-sans text-3xl font-bold text-gray-900 dark:text-gray-100">رابعًا: إضاءات في التلاوة والبلاغة</h2>
         </div>
 
         <!-- Section: Recitation Errors (Lang Card) -->
@@ -438,11 +438,11 @@
 
     <!-- Footer Documentation -->
     <footer class="max-w-4xl mx-auto px-6 py-12 mb-12 text-center border-t border-black/5 dark:border-white/5">
-        <p class="text-sm font-light text-gray-400 dark:text-gray-600 space-y-2">
-            <span class="block font-medium tracking-wide">خامسًا: معلومات التوثيق والسياق</span>
+        <div class="text-sm font-light text-gray-400 dark:text-gray-600 space-y-2">
+            <span class="block font-sans text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">خامسًا: معلومات التوثيق والسياق</span>
             <span class="block">الموضوع: استكمال تفسير سورة الفاتحة للآيات من 5 إلى 7، بناءً على اللقاء الماضي الذي تناول الآيات الأربع الأولى.</span>
             <span class="block mt-4" dir="ltr">9 Dhu al-Qidah 1447 AH</span>
-        </p>
+        </div>
     </footer>
 
     <!-- Dark Mode Toggle Logic (Vanilla JS) -->
@@ -452,19 +452,34 @@
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
         const htmlElement = document.documentElement;
 
+        // Font Size Toggle Logic
+        const fontSizeToggleBtn = document.getElementById('font-size-toggle');
+        let currentSize = parseInt(localStorage.getItem('fontSize')) || 16;
+        
+        function applyFontSize() {
+            htmlElement.style.fontSize = currentSize + 'px';
+        }
+        applyFontSize();
+
+        fontSizeToggleBtn.addEventListener('click', function() {
+            currentSize = currentSize === 16 ? 20 : 16;
+            localStorage.setItem('fontSize', currentSize);
+            applyFontSize();
+        });
+
         // Apply theme on load
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             htmlElement.classList.add('dark');
-            themeToggleLightIcon.classList.remove('hidden');
+            themeToggleLightIcon?.classList.remove('hidden');
         } else {
             htmlElement.classList.remove('dark');
-            themeToggleDarkIcon.classList.remove('hidden');
+            themeToggleDarkIcon?.classList.remove('hidden');
         }
 
         // Toggle action
-        themeToggleBtn.addEventListener('click', function() {
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
+        themeToggleBtn?.addEventListener('click', function() {
+            themeToggleDarkIcon?.classList.toggle('hidden');
+            themeToggleLightIcon?.classList.toggle('hidden');
             
             htmlElement.classList.toggle('dark');
             
